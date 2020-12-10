@@ -1,8 +1,55 @@
 <!DOCTYPE html>
-<link rel="stylesheet" href="reset.css">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Concert+One&display=swap" rel="stylesheet"> 
 <style>
+    /* http://meyerweb.com/eric/tools/css/reset/ 
+    v2.0 | 20110126
+    License: none (public domain)
+    */
+
+    html, body, div, span, applet, object, iframe,
+    h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+    a, abbr, acronym, address, big, cite, code,
+    del, dfn, em, img, ins, kbd, q, s, samp,
+    small, strike, strong, sub, sup, tt, var,
+    b, u, i, center,
+    dl, dt, dd, ol, ul, li,
+    fieldset, form, label, legend,
+    table, caption, tbody, tfoot, thead, tr, th, td,
+    article, aside, canvas, details, embed, 
+    figure, figcaption, footer, header, hgroup, 
+    menu, nav, output, ruby, section, summary,
+    time, mark, audio, video {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font: inherit;
+        vertical-align: baseline;
+    }
+    /* HTML5 display-role reset for older browsers */
+    article, aside, details, figcaption, figure, 
+    footer, header, hgroup, menu, nav, section {
+        display: block;
+    }
+    body {
+        line-height: 1;
+    }
+    ol, ul {
+        list-style: none;
+    }
+    blockquote, q {
+        quotes: none;
+    }
+    blockquote:before, blockquote:after,
+    q:before, q:after {
+        content: '';
+        content: none;
+    }
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
     #bg {
         background-color: #4A5859;
         position: fixed;
@@ -155,4 +202,100 @@
         <div id="footer"><h2>Made by Ray <a href="https://github.com/Ray-Sewell">@git</a> as part of <a href="https://www.theodinproject.com">The Odin Project</a></h2></div>
     </div>
 </body>
-<script src="calculator.js"></script> 
+<script>
+    const calcScreen = document.querySelector("#calcScreen p");
+    var clickSound = new Audio("click.wav");
+    var tingSound = new Audio("ting.wav");
+    var parseString = "";
+
+    function evaluateString(parse) {
+        let temp = parseString.split(" ");
+        let ans = parseFloat(temp[0]);
+        for (i = 1; i < temp.length - 1; i += 2) {
+            switch (temp[i]) {
+                case "+":
+                    ans = (ans + parseFloat(temp[i + 1]));
+                    break;
+                case "-":
+                    ans = (ans - parseFloat(temp[i + 1]));
+                    break;
+                case "*":
+                    ans = (ans * parseFloat(temp[i + 1]));
+                    break;
+                case "/":
+                    ans = (ans / parseFloat(temp[i + 1]));
+                    break;
+                case "^":
+                    ans = Math.pow(ans, parseFloat(temp[i + 1]))
+                    break;
+                default:
+            }
+        }
+        parseString = parseFloat(ans.toPrecision(14)).toString();
+        calcScreen.textContent = parseString;
+    }
+
+    let operand = false;
+    let decimal = true;
+    var button = document.querySelectorAll(".button");
+    button.forEach(element => {
+        input(element);
+    });
+    function input(button) {
+        let value = button.querySelector("p").innerHTML;
+        button.onclick = addToParse;
+        function addToParse() {
+            if (value === "=") {
+                tingSound.play();
+            } else {
+                clickSound.play();
+            }
+            switch (value) {
+                case "CA": 
+                    operand = false;
+                    decimal = true;
+                    parseString = "";
+                    break;
+                case "+":
+                case "-":
+                case "*":
+                case "/":
+                case "^":
+                    if (!operand) {
+                        break;
+                    } else {
+                        parseString += (" " + value + " ");
+                        operand = false;
+                        decimal = true;
+                        break;
+                    }
+                case "=":
+                    if (!operand) {
+                        parseString = "OPERAND ERROR";
+                        operand = false;
+                    } else {
+                        evaluateString(parseString);
+                    }
+                    break;
+                case ".":
+                    if (!decimal) {
+                        break;
+                    } else {
+                        decimal = false;
+                    }
+                default:
+                    if (parseString === "OPERAND ERROR") {
+                        operand = true;
+                        parseString = "";
+                        parseString += value;
+                        break;
+                    }
+                    if (parseString.length < 16) {
+                        parseString += value;
+                        operand = true;
+                    }
+            }
+            calcScreen.textContent = parseString;
+        }
+    }
+</script> 
