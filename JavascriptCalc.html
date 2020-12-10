@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="reset.css">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Concert+One&display=swap" rel="stylesheet"> 
+<style>
+    #bg {
+        background-color: #4A5859;
+        position: fixed;
+        height: 100%;
+        width: 100%;
+    }
+    #calcBase {
+        background-color: #F4B860;
+        position: fixed;
+        top: 100px;
+        left: 100px;
+        height: 480px;
+        width: 390px;
+        border-radius: 10px;
+        box-shadow: 2px 5px 4px #26292C;
+    }
+    #calcScreen {
+        position: absolute;
+        top: 30px;
+        left: 20px;
+        height: 80px;
+        width: 350px;
+        border-radius: 10px;
+        box-shadow: inset -3px -5px 2px #26292C;
+        background-color: #32373B;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+    #calcScreen p {
+        text-align: right;
+        color: white;
+        padding: 15px 20px;
+        font-size: 2.4em;
+        font-family: 'Concert One', sans-serif;
+        letter-spacing: -0.03em;
+    }
+    #calcButtons {
+        position: absolute;
+        display: grid;
+        grid-template-columns: repeat(4, auto);
+        grid-template-rows: repeat(5, auto);
+        grid-gap: 15px;
+        padding: 140px 20px 20px 30px;
+    }
+    .button {
+        background-color: #FFFFFF;
+        border-radius: 10px;
+        box-shadow: 1px 3px 2px #26292C;
+        height: 50px;
+        width: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+    .button:hover {
+        background-color: #32373B !important;
+    }
+    .button:hover p{
+        color: rgb(255, 255, 255) !important;
+    }
+    .button p {
+        font-family: 'Concert One', sans-serif;
+        text-align: center;
+        font-size: 1.5em;
+        user-select: none;
+    }
+    .button:active {
+        transform: scale(95%) !important;
+    }
+    #equals {
+        height: inherit;
+        background-color: #4A5859;
+        color: white;
+        grid-area: 4 / 4 / span 2 / span 1;
+    }
+    #zero {
+        width: inherit;
+        background-color: #4A5859;
+        color: white;
+        grid-area: 5 / 1 / span 1 / span 2;
+    }
+    #cancel {
+        width: inherit;
+        color: white;
+        background-color: #C83E4D;
+    }
+    #operators {
+        color: #C83E4D;
+    }
+</style>
+<body>
+    <div id="bg">
+
+    </div>
+    <div id="calcBase">
+        <div id="calcScreen"><p></p></div>
+        <div id="calcButtons">
+            <div class="button" id="equals"><p>=</p></div>
+            <div class="button" id="zero"><p>0</p></div>
+            <div class="button" id="cancel"><p>CA</p></div>
+            <div class="button" id="operators"><p>^</p></div>
+            <div class="button" id="operators"><p>*</p></div>
+            <div class="button" id="operators"><p>/</p></div>
+            <div class="button"><p>7</p></div>
+            <div class="button"><p>8</p></div>
+            <div class="button"><p>9</p></div>
+            <div class="button" id="operators"><p>+</p></div>
+            <div class="button"><p>4</p></div>
+            <div class="button"><p>5</p></div>
+            <div class="button"><p>6</p></div>
+            <div class="button" id="operators"><p>-</p></div>
+            <div class="button"><p>1</p></div>
+            <div class="button"><p>2</p></div>
+            <div class="button"><p>3</p></div>
+            <div class="button"><p>.</p></div>
+        </div>
+    </div>
+</body>
+<script src="calculator.js"></script> 
