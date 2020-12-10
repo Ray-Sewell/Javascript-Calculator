@@ -8,16 +8,48 @@
         position: fixed;
         height: 100%;
         width: 100%;
+        padding-top: 10%;
     }
     #calcBase {
         background-color: #F4B860;
         position: fixed;
-        top: 100px;
-        left: 100px;
         height: 480px;
         width: 390px;
         border-radius: 10px;
         box-shadow: 2px 5px 4px #26292C;
+        top: 20%;
+        left: 50%;
+        margin-left: -195px;
+    }
+    #title {
+        width: 100%;
+        text-align: center;
+        position: absolute;
+        top: -130px;
+        font-family: 'Concert One', sans-serif;
+        font-size: 3em;
+        color: white;
+        user-select: none;
+    }
+    #footer {
+        width: 100%;
+        text-align: center;
+        position: absolute;
+        top: 500px;
+        font-family: 'Concert One', sans-serif;
+        font-size: 1em;
+        color: white;
+        user-select: none;
+    }
+    a {
+        font-family: 'Concert One', sans-serif;
+        font-size: 1em;
+        color: white;
+        user-select: none;
+    }
+    a:hover {
+        color:#F4B860;
+        user-select: none;
     }
     #calcScreen {
         position: absolute;
@@ -96,10 +128,10 @@
 </style>
 <body>
     <div id="bg">
-
     </div>
     <div id="calcBase">
-        <div id="calcScreen"><p></p></div>
+        <div id="title"><h1>A Simple Calculator</h1></div>
+        <div id="calcScreen"><p>HELLO!</p></div>
         <div id="calcButtons">
             <div class="button" id="equals"><p>=</p></div>
             <div class="button" id="zero"><p>0</p></div>
@@ -120,6 +152,7 @@
             <div class="button"><p>3</p></div>
             <div class="button"><p>.</p></div>
         </div>
+        <div id="footer"><h2>Made by Ray <a href="https://github.com/Ray-Sewell">@git</a> as part of <a href="https://www.theodinproject.com">The Odin Project</a></h2></div>
     </div>
 </body>
 <script src="calculator.js"></script> 

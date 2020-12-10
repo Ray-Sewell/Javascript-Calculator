@@ -21,10 +21,7 @@ function evaluateString(parse) {
                 ans = (ans / parseFloat(temp[i + 1]));
                 break;
             case "^":
-                let tempAns = ans;
-                for (x = 1; x < Math.abs(parseFloat(temp[i + 1])); x++) {
-                    ans *= tempAns;
-                }
+                ans = Math.pow(ans, parseFloat(temp[i + 1]))
                 break;
             default:
         }
