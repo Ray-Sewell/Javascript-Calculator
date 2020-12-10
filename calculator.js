@@ -44,10 +44,8 @@ function input(button) {
     button.onclick = addToParse;
     function addToParse() {
         if (value === "=") {
-            tingSound.fastSeek(0);
             tingSound.play();
         } else {
-            clickSound.fastSeek(0);
             clickSound.play();
         }
         switch (value) {
